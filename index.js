@@ -227,5 +227,53 @@ function keydown(event)
 }
 
 
+// const canvas = document.getElementById("game");
+    let touchStartX, touchStartY;
+
+    canvas.addEventListener("touchstart", (event) => {
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+    });
+
+    canvas.addEventListener("touchmove", (event) => {
+        const touchEndX = event.touches[0].clientX;
+        const touchEndY = event.touches[0].clientY;
+
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Horizontal swipe
+            if (deltaX > 0) {
+                // Right swipe
+                if (xv === -1) return;
+                xv = 1;
+                yv = 0;
+            } else {
+                // Left swipe
+                if (xv === 1) return;
+                xv = -1;
+                yv = 0;
+            }
+        } else {
+            // Vertical swipe
+            if (deltaY > 0) {
+                // Down swipe
+                if (yv === -1) return;
+                xv = 0;
+                yv = 1;
+            } else {
+                // Up swipe
+                if (yv === 1) return;
+                xv = 0;
+                yv = -1;
+            }
+        }
+
+        // Prevent page scrolling
+        event.preventDefault();
+    });
+
+
 
 drawGame();
