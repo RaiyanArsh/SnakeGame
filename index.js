@@ -56,7 +56,7 @@ function clearScreen() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 function drawSnake() {
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "yellow";
   for (let i = 0; i < snakeadd.length; i++) {
     let part = snakeadd[i];
     ctx.fillRect(part.x * tile, part.y * tile, tileSize, tileSize);
